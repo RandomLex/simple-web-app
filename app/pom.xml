@@ -48,12 +48,21 @@
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
-        <configuration>
-          <server>localtomcat</server>
-          <url>http://localhost:8080/manager/text</url>
-          <path>/${project.build.finalName}</path>
-          <update>true</update>
-        </configuration>
+        <executions>
+          <execution>
+            <id>deploy-on-verify</id>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <server>localtomcat</server>
+              <url>http://localhost:8080/manager/text</url>
+              <path>/${project.build.finalName}</path>
+              <update>true</update>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
