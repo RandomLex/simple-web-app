@@ -10,6 +10,11 @@ public class Teacher extends Person {
         super(name, age);
     }
 
+    public Teacher(String name, int age, int salary) {
+        this(name, age);
+        this.salary = salary;
+    }
+
     public int getSalary() {
         return salary;
     }
@@ -19,7 +24,15 @@ public class Teacher extends Person {
     }
 
     @Override
+    public String toString() {
+        return "Teacher{" +
+                super.toString() +
+                ", salary=" + salary +
+                '}';
+    }
+
+    @Override
     public String getInfo() {
-        return null;
+        return toString();
     }
 }

@@ -47,4 +47,10 @@ public abstract class Person implements Printable{
         result = 31 * result + age;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", age=" + age;
+    }
 }

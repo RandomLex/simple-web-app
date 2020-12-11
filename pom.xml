@@ -9,6 +9,7 @@
   <modules>
     <module>app</module>
     <module>model</module>
+    <module>logic</module>
   </modules>
 
   <packaging>pom</packaging>
