@@ -1,38 +1,54 @@
 package by.academy.web.logic;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class AccountingTest {
+    private Accounting accounting;
 
+    @BeforeEach
+    void setUp() {
+        accounting = new Accounting();
+    }
 
-
-    @Test
-    void averageInteger() {
+    @ParameterizedTest
+//    @ValueSource(ints = {6, 8})  -- the first options
+//    @CsvSource({                 -- the second options
+//            "6, 8, 7",
+//            "5, 6, 5.5"
+//    })
+    @MethodSource("intIntBigDecimal")
+        //the only fits here
+    void averageInteger(int a, int b, BigDecimal expectedAverage) {
         //given
-        List<Integer> integers = List.of(6, 8);
-        BigDecimal expectedAverage = BigDecimal.valueOf(7);
+        List<Integer> integers = List.of(a, b);
         //when
-        Accounting accounting = new Accounting();
         BigDecimal actualAverage = accounting.average(integers);
         //then
         assertEquals(expectedAverage, actualAverage);
     }
 
-    @Test
-    void averageDecimal() {
-        //given
-        List<Integer> integers = List.of(5, 6);
-        BigDecimal expectedAverage = BigDecimal.valueOf(5.5);
-        //when
-        Accounting accounting = new Accounting();
-        BigDecimal actualAverage = accounting.average(integers);
-        //then
-        assertEquals(expectedAverage, actualAverage);
+    private static Stream<Arguments> intIntBigDecimal() {
+        return Stream.of(
+                arguments(6, 8, BigDecimal.valueOf(7)),
+                arguments(5, 6, BigDecimal.valueOf(5.5))
+        );
     }
+
 
 }
