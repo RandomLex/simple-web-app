@@ -54,7 +54,7 @@
             <goals>
               <goal>deploy</goal>
             </goals>
-            <phase>verify</phase>
+            <phase>install</phase>
             <configuration>
               <server>localtomcat</server>
               <url>http://localhost:8080/manager/text</url>
