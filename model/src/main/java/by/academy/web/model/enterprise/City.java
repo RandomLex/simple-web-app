@@ -10,6 +10,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
